@@ -1,66 +1,68 @@
 # Projector Roadmap
 
-This document outlines the strategic plan, architectural decisions, and development phases for **Projector**, an Open Source Project Tracker, Management, SDLC, Delivery, and Communication Software tailored for Remote Async Teams.
+This document outlines the strategic plan, architectural decisions, and development phases for **Projector**, an Open Source Project Management, SDLC, Delivery, and Communication Software. It is designed to serve the needs of **Service Agencies** managing multiple client projects from Estimation to Maintenance.
 
 ## 1. Project Overview
-**Projector** aims to solve the unique challenges faced by distributed engineering teams. Unlike traditional project management tools that prioritize synchronous updates and real-time status checks, Projector is built on the philosophy of **Async-First**.
+**Projector** is a comprehensive tool for Service Agencies to manage the entire lifecycle of client projects. It facilitates not just code delivery, but the business processes preceding it (Estimation, Quotation) and the collaboration required to execute it.
 
 ### Core Philosophy
-*   **Written-First Culture:** Documentation is not an afterthought; it is the primary mode of communication.
-*   **Decision Logging:** Every major technical or product decision is recorded, searchable, and immutable.
-*   **Reducing Meetings:** Features are designed to eliminate the need for stand-ups and status meetings through automated reporting and rich context threading.
+*   **Agency-Centric:** Built to handle client requirements, estimation, and billing cycles.
+*   **Full Lifecycle Support:** From the first quote to post-deployment maintenance.
+*   **Hybrid Communication:** Combines real-time collaboration for speed with written documentation for clarity.
 
 ## 2. Technical Architecture
-The project will be built using the **MERN Stack** to ensure a unified JavaScript/TypeScript ecosystem for contributors.
-
-*   **Frontend:** React.js (Single Page Application)
+The project will be built using the **MERN Stack**:
+*   **Frontend:** React.js
 *   **Backend:** Node.js with Express
 *   **Database:** MongoDB
-*   **State Management & API:** (To be determined by contributors, e.g., Redux, React Query, REST/GraphQL)
+*   **Real-time Engine:** Socket.io (for Chat)
 
 ## 3. Functional Modules
-Projector is divided into four key distinct modules:
 
-### A. Project Tracker & Management
-*   **Boards & Lists:** Customizable Kanban and Sprint boards.
-*   **Async Standups:** Automated prompt-based status updates integrated into the dashboard.
-*   **Milestones:** Date-driven release tracking.
+### A. Pre-Project: Estimation & Quotation
+*   **Requirements Gathering:** Tools to document initial client needs.
+*   **Estimation Builder:** Create line-item estimates (time/cost) for tasks.
+*   **Quotation Generation:** Generate PDF quotes from estimates for client approval.
 
-### B. Communication Hub
-*   **Contextual Threads:** Discussions attached directly to code, tasks, or documents (avoiding fragmented Slack threads).
-*   **Inbox:** A unified notification center for asynchronous updates.
-*   **No "Online" Status:** Promoting deep work by removing presence indicators.
+### B. Project Management & SDLC
+The tool supports the full Software Development Life Cycle:
+1.  **Planning:** Project initialization, resource allocation.
+2.  **Requirements Analysis:** Detailed functional spec documentation.
+3.  **Design:** Upload and review wireframes/mockups.
+4.  **Development (Implementation):** Task management (Kanban/Sprints) linked to code.
+5.  **Testing:** QA bug tracking and test case management.
+6.  **Deployment:** Release tracking and CI/CD status.
+7.  **Maintenance:** Support ticket handling and SLA tracking.
 
-### C. Decision Logs (RFCs/ADRs)
-*   **Dedicated Module:** A specific section for proposing, debating, and ratifying Architecture Decision Records (ADRs) and Requests for Comments (RFCs).
-*   **Voting & Approval:** structured workflows for decision consensus without meetings.
+### C. Team Management
+*   **Resource Assignment:** Assign team members to specific projects and tasks.
+*   **Roles & Permissions:** Manage access levels (e.g., Admin, Developer, Client, PM).
+*   **Availability:** Track team member capacity.
 
-### D. SDLC & Delivery
-*   **Git Integration:** Link commits and PRs to tasks (GitHub/GitLab API integration).
-*   **CI/CD Visibility:** View build statuses and deployment history directly on the task card.
-*   **Release Notes:** Automated generation of release notes based on completed tasks.
+### D. Communication Hub
+*   **Real-time Chat:** Integrated team chat (similar to Slack) for quick coordination.
+*   **Async Threads:** Contextual discussions on specific tasks or documents to preserve history.
+*   **Project Documentation:** Wiki-style documentation for long-term knowledge retention.
 
 ## 4. Development Roadmap
 
 ### Phase 1: Foundation (MVP)
-*   Setup Monorepo structure (MERN).
-*   User Authentication & Authorization.
-*   Basic CRUD for Tasks and Boards.
-*   Initial "Decision Log" implementation.
+*   MERN Stack Setup.
+*   User & Team Management (Authentication, Roles).
+*   Project Creation & Dashboard.
 
-### Phase 2: Communication & Async Workflow
-*   Implement threading system for comments.
-*   Build the "Async Standup" feature.
+### Phase 2: SDLC & Task Management
+*   Kanban Boards & Sprint Planning.
+*   Implementation of the 7-step SDLC workflow.
+*   Assignment logic (Assigning tasks to members).
+
+### Phase 3: Communication
+*   Real-time Chat implementation (Socket.io).
 *   Notification system.
 
-### Phase 3: SDLC Integration
-*   GitHub/GitLab Webhook integration.
-*   Release tracking module.
-
-### Phase 4: Advanced Features
-*   Mobile responsive design.
-*   Advanced analytics (Lead time, Cycle time).
-*   Plugin system for external integrations.
+### Phase 4: Business Logic (Agency Features)
+*   Estimation & Quotation modules.
+*   PDF Generation for Quotes.
 
 ## 5. Contributing
-We welcome contributions from the open-source community! Please review the `CONTRIBUTING.md` (coming soon) for guidelines on code style, testing, and pull requests.
+We welcome contributions! Please review `CONTRIBUTING.md` (coming soon).
