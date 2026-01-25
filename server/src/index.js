@@ -28,6 +28,12 @@ require('./config/passport')(passport);
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/users', require('./routes/users'));
 app.use('/api/projects', require('./routes/projects'));
+app.use('/api/tasks', require('./routes/tasks'));
+app.use('/api/bugs', require('./routes/bugs'));
+app.use('/api/documents', require('./routes/documents'));
+
+// Serve Uploads
+app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
 
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', message: 'Server is running', timestamp: new Date() });
