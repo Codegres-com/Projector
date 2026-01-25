@@ -1,9 +1,0 @@
-
-> app@1.0.0 start
-> node server/src/index.js
-
-No MONGO_URI found, starting in-memory MongoDB...
-Server running on port 5000
-MongoDB Connected: 127.0.0.1
-Admin user created successfully
-Terminated

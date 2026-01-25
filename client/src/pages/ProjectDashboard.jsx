@@ -7,6 +7,7 @@ import BugTracker from '../components/BugTracker';
 import DocumentManager from '../components/DocumentManager';
 import CredentialManager from '../components/CredentialManager';
 import DecisionLogManager from '../components/DecisionLogManager';
+import ChatWindow from '../components/ChatWindow';
 
 const ProjectDashboard = () => {
   const { id } = useParams();
@@ -93,6 +94,8 @@ const ProjectDashboard = () => {
               return <CredentialManager projectId={id} />;
           case 'Decisions':
               return <DecisionLogManager projectId={id} />;
+          case 'Chat':
+              return <ChatWindow projectId={id} title={`Project Chat: ${project.name}`} />;
           case 'Overview':
           default:
               return (
@@ -196,7 +199,7 @@ const ProjectDashboard = () => {
       {/* Tabs Navigation */}
       <div className="border-b border-gray-200 mb-6">
           <nav className="-mb-px flex space-x-8">
-              {['Overview', 'Kanban', 'Documents', 'Bugs', 'Credentials', 'Decisions'].map((tab) => (
+              {['Overview', 'Kanban', 'Documents', 'Bugs', 'Credentials', 'Decisions', 'Chat'].map((tab) => (
                   <button
                       key={tab}
                       onClick={() => setActiveTab(tab)}

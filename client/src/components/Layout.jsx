@@ -25,6 +25,9 @@ const Layout = () => {
           <Link to="/team" className="block px-6 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600">
             Team Management
           </Link>
+          <Link to="/messages" className="block px-6 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600">
+            Messages
+          </Link>
         </nav>
         <div className="p-6 border-t mt-auto absolute bottom-0 w-64">
            <div className="mb-4">
