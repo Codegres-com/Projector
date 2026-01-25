@@ -31,6 +31,8 @@ app.use('/api/projects', require('./routes/projects'));
 app.use('/api/tasks', require('./routes/tasks'));
 app.use('/api/bugs', require('./routes/bugs'));
 app.use('/api/documents', require('./routes/documents'));
+app.use('/api/credentials', require('./routes/credentials'));
+app.use('/api/decision-logs', require('./routes/decisionLogs'));
 
 // Serve Uploads
 app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
