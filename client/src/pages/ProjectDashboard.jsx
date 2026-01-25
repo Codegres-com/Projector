@@ -5,6 +5,8 @@ import ProjectForm from '../components/ProjectForm';
 import KanbanBoard from '../components/KanbanBoard';
 import BugTracker from '../components/BugTracker';
 import DocumentManager from '../components/DocumentManager';
+import CredentialManager from '../components/CredentialManager';
+import DecisionLogManager from '../components/DecisionLogManager';
 
 const ProjectDashboard = () => {
   const { id } = useParams();
@@ -19,7 +21,9 @@ const ProjectDashboard = () => {
   const [stats, setStats] = useState({
       tasks: 0,
       openBugs: 0,
-      docs: 0
+      docs: 0,
+      credentials: 0,
+      decisions: 0
   });
 
   useEffect(() => {
@@ -33,11 +37,15 @@ const ProjectDashboard = () => {
         const tasksRes = await api.get(`/tasks?projectId=${id}`);
         const bugsRes = await api.get(`/bugs?projectId=${id}`);
         const docsRes = await api.get(`/documents?projectId=${id}`);
+        const credsRes = await api.get(`/credentials?projectId=${id}`);
+        const logsRes = await api.get(`/decision-logs?projectId=${id}`);
 
         setStats({
             tasks: tasksRes.data.length,
             openBugs: bugsRes.data.filter(b => b.status === 'Open').length,
-            docs: docsRes.data.length
+            docs: docsRes.data.length,
+            credentials: credsRes.data.length,
+            decisions: logsRes.data.length
         });
 
       } catch (err) { // eslint-disable-line no-unused-vars
@@ -81,6 +89,10 @@ const ProjectDashboard = () => {
               return <BugTracker projectId={id} />;
           case 'Documents':
               return <DocumentManager projectId={id} />;
+          case 'Credentials':
+              return <CredentialManager projectId={id} />;
+          case 'Decisions':
+              return <DecisionLogManager projectId={id} />;
           case 'Overview':
           default:
               return (
@@ -99,6 +111,16 @@ const ProjectDashboard = () => {
                         <h3 className="text-lg font-bold text-gray-900">Documents</h3>
                         <p className="text-3xl font-bold text-gray-600 my-2">{stats.docs}</p>
                         <p className="text-sm text-gray-800">Files Uploaded</p>
+                    </div>
+                    <div onClick={() => setActiveTab('Credentials')} className="bg-purple-50 p-6 rounded-lg border border-purple-100 cursor-pointer hover:bg-purple-100 transition">
+                        <h3 className="text-lg font-bold text-purple-900">Credentials</h3>
+                        <p className="text-3xl font-bold text-purple-600 my-2">{stats.credentials}</p>
+                        <p className="text-sm text-purple-800">Stored Credentials</p>
+                    </div>
+                    <div onClick={() => setActiveTab('Decisions')} className="bg-orange-50 p-6 rounded-lg border border-orange-100 cursor-pointer hover:bg-orange-100 transition">
+                        <h3 className="text-lg font-bold text-orange-900">Decisions</h3>
+                        <p className="text-3xl font-bold text-orange-600 my-2">{stats.decisions}</p>
+                        <p className="text-sm text-orange-800">Decision Logs</p>
                     </div>
                 </div>
               );
@@ -174,7 +196,7 @@ const ProjectDashboard = () => {
       {/* Tabs Navigation */}
       <div className="border-b border-gray-200 mb-6">
           <nav className="-mb-px flex space-x-8">
-              {['Overview', 'Kanban', 'Documents', 'Bugs'].map((tab) => (
+              {['Overview', 'Kanban', 'Documents', 'Bugs', 'Credentials', 'Decisions'].map((tab) => (
                   <button
                       key={tab}
                       onClick={() => setActiveTab(tab)}
