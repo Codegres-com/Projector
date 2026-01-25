@@ -33,6 +33,7 @@ app.use('/api/bugs', require('./routes/bugs'));
 app.use('/api/documents', require('./routes/documents'));
 app.use('/api/credentials', require('./routes/credentials'));
 app.use('/api/decision-logs', require('./routes/decisionLogs'));
+app.use('/api/messages', require('./routes/messages'));
 
 // Serve Uploads
 app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
