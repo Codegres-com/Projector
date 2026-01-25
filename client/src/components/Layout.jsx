@@ -19,10 +19,12 @@ const Layout = () => {
           <p className="text-xs text-gray-500 mt-1">Agency Management</p>
         </div>
         <nav className="mt-6">
+          <Link to="/projects" className="block px-6 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600">
+            Projects
+          </Link>
           <Link to="/team" className="block px-6 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600">
             Team Management
           </Link>
-          {/* Add more links here later */}
         </nav>
         <div className="p-6 border-t mt-auto absolute bottom-0 w-64">
            <div className="mb-4">
