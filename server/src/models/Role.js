@@ -30,7 +30,11 @@ const RoleSchema = new mongoose.Schema({
     decisionLogs: { type: permissionSchema, default: () => ({}) },
     chat:         { type: permissionSchema, default: () => ({}) },
     team:     { type: permissionSchema, default: () => ({}) },
-    roles:    { type: permissionSchema, default: () => ({}) }
+    roles:    { type: permissionSchema, default: () => ({}) },
+    clients:  { type: permissionSchema, default: () => ({}) },
+    requirements: { type: permissionSchema, default: () => ({}) },
+    estimations: { type: permissionSchema, default: () => ({}) },
+    quotations: { type: permissionSchema, default: () => ({}) }
   }
 }, {
   timestamps: true

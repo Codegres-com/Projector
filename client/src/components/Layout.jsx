@@ -25,8 +25,26 @@ const Layout = () => {
           <Link to="/team" className="block px-6 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600">
             Team Management
           </Link>
+          <Link to="/roles" className="block px-6 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600">
+            Roles
+          </Link>
           <Link to="/messages" className="block px-6 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600">
             Messages
+          </Link>
+          <div className="mt-4 mb-2 px-6 text-xs font-semibold text-gray-500 uppercase tracking-wider">
+              CRM & Sales
+          </div>
+          <Link to="/clients" className="block px-6 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600">
+            Clients
+          </Link>
+          <Link to="/requirements" className="block px-6 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600">
+            Requirements
+          </Link>
+          <Link to="/estimations" className="block px-6 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600">
+            Estimations
+          </Link>
+          <Link to="/quotations" className="block px-6 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600">
+            Quotations
           </Link>
         </nav>
         <div className="p-6 border-t mt-auto absolute bottom-0 w-64">
