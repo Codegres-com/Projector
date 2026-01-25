@@ -57,7 +57,7 @@ const Messages = () => {
                          </div>
                          <div>
                              <p className="font-semibold text-gray-800">{u.name}</p>
-                             <p className="text-xs text-gray-500 capitalize">{u.role}</p>
+                             <p className="text-xs text-gray-500 capitalize">{u.role?.name || 'Unknown'}</p>
                          </div>
                     </div>
                 ))
