@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import api from '../api';
 import TeamMemberForm from '../components/TeamMemberForm';
 import { useAuth } from '../context/AuthContext';
@@ -9,7 +10,8 @@ const TeamList = () => {
   const [error, setError] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentUser, setCurrentUser] = useState(null); // User being edited
-  const { isAdmin } = useAuth();
+  const { isAdmin, can } = useAuth();
+  const navigate = useNavigate();
 
   const fetchUsers = async () => {
     try {
@@ -71,14 +73,24 @@ const TeamList = () => {
     <div>
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-2xl font-bold text-gray-800">Team Directory</h2>
-        {isAdmin && (
-          <button
-            onClick={handleAddClick}
-            className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 flex items-center gap-2"
-          >
-            <span>+ Add Member</span>
-          </button>
-        )}
+        <div className="flex gap-2">
+            {can('roles', 'read') && (
+                <button
+                    onClick={() => navigate('/roles')}
+                    className="bg-gray-600 text-white px-4 py-2 rounded hover:bg-gray-700"
+                >
+                    Manage Roles
+                </button>
+            )}
+            {can('team', 'create') && (
+                <button
+                    onClick={handleAddClick}
+                    className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 flex items-center gap-2"
+                >
+                    <span>+ Add Member</span>
+                </button>
+            )}
+        </div>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -90,12 +102,12 @@ const TeamList = () => {
                 <p className="text-sm text-gray-500">{user.email}</p>
               </div>
               <span className={`px-2 py-1 text-xs rounded-full ${
-                user.role === 'Admin' ? 'bg-purple-100 text-purple-800' :
-                user.role === 'PM' ? 'bg-green-100 text-green-800' :
-                user.role === 'Client' ? 'bg-yellow-100 text-yellow-800' :
+                user.role?.name === 'Admin' ? 'bg-purple-100 text-purple-800' :
+                user.role?.name === 'PM' ? 'bg-green-100 text-green-800' :
+                user.role?.name === 'Client' ? 'bg-yellow-100 text-yellow-800' :
                 'bg-blue-100 text-blue-800'
               }`}>
-                {user.role}
+                {user.role?.name || 'Unknown'}
               </span>
             </div>
 
@@ -110,22 +122,24 @@ const TeamList = () => {
               </div>
             </div>
 
-            {isAdmin && (
-              <div className="mt-6 flex justify-end gap-3 pt-4 border-t border-gray-100">
-                <button
-                  onClick={() => handleEditClick(user)}
-                  className="text-sm text-blue-600 hover:text-blue-800"
-                >
-                  Edit
-                </button>
-                <button
-                  onClick={() => handleDeleteClick(user._id)}
-                  className="text-sm text-red-600 hover:text-red-800"
-                >
-                  Delete
-                </button>
-              </div>
-            )}
+            <div className="mt-6 flex justify-end gap-3 pt-4 border-t border-gray-100">
+                {can('team', 'update') && (
+                    <button
+                        onClick={() => handleEditClick(user)}
+                        className="text-sm text-blue-600 hover:text-blue-800"
+                    >
+                        Edit
+                    </button>
+                )}
+                {can('team', 'delete') && (
+                    <button
+                        onClick={() => handleDeleteClick(user._id)}
+                        className="text-sm text-red-600 hover:text-red-800"
+                    >
+                        Delete
+                    </button>
+                )}
+            </div>
           </div>
         ))}
       </div>

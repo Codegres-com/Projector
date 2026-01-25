@@ -70,8 +70,8 @@ const ProjectForm = ({ project, onSave, onCancel }) => {
 
   if (loading) return <div>Loading...</div>;
 
-  const clients = users.filter(u => u.role === 'Client');
-  const staff = users.filter(u => u.role !== 'Client');
+  const clients = users.filter(u => u.role?.name === 'Client');
+  const staff = users.filter(u => u.role?.name !== 'Client');
 
   return (
     <div className="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full flex items-center justify-center z-50">
@@ -141,7 +141,7 @@ const ProjectForm = ({ project, onSave, onCancel }) => {
                         className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 border p-2">
                         <option value="">Select Manager</option>
                         {staff.map(u => (
-                            <option key={u._id} value={u._id}>{u.name} ({u.role})</option>
+                            <option key={u._id} value={u._id}>{u.name} ({u.role?.name || 'Unknown'})</option>
                         ))}
                     </select>
                 </div>

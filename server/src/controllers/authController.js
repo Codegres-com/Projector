@@ -18,7 +18,7 @@ exports.login = async (req, res) => {
 
   try {
     // Check for user
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ email }).populate('role');
 
     if (!user) {
       return res.status(400).json({ message: 'Invalid credentials' });
@@ -52,7 +52,7 @@ exports.login = async (req, res) => {
 // @access  Private
 exports.getMe = async (req, res) => {
   try {
-    const user = await User.findById(req.user.id).select('-password');
+    const user = await User.findById(req.user.id).select('-password').populate('role');
     res.json(user);
   } catch (err) {
     console.error(err.message);

@@ -16,9 +16,8 @@ const UserSchema = new mongoose.Schema({
     required: true
   },
   role: {
-    type: String,
-    enum: ['Admin', 'Developer', 'Client', 'PM'],
-    default: 'Developer'
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Role'
   },
   skills: {
     type: String,
