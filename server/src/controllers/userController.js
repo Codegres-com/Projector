@@ -5,7 +5,7 @@ const User = require('../models/User');
 // @access  Private
 exports.getUsers = async (req, res) => {
   try {
-    const users = await User.find().select('-password');
+    const users = await User.find().select('-password').populate('role');
     res.json(users);
   } catch (err) {
     console.error(err.message);

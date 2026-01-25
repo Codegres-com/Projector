@@ -26,6 +26,7 @@ export const AuthProvider = ({ children }) => {
 
           // Fetch fresh user data
           const res = await api.get('/auth/me');
+          console.log("AuthContext loaded user:", res.data); // DEBUG LOG
           setUser(res.data);
         } catch (error) {
           console.error('Error loading user', error);
@@ -41,6 +42,7 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (email, password) => {
     const res = await api.post('/auth/login', { email, password });
+    console.log("AuthContext login response:", res.data); // DEBUG LOG
     localStorage.setItem('token', res.data.token);
     setUser(res.data.user);
     return res.data;
@@ -51,13 +53,27 @@ export const AuthProvider = ({ children }) => {
     setUser(null);
   };
 
+  const checkPermission = (resource, action) => {
+    if (!user || !user.role) return false;
+
+    // Admin Override
+    if (user.role.name === 'Admin') return true;
+
+    // Check specific permission
+    return user.role.permissions?.[resource]?.[action] === true;
+  };
+
+  const isAdmin = user?.role?.name === 'Admin';
+  console.log("AuthContext isAdmin:", isAdmin, "Role:", user?.role);
+
   const value = {
     user,
     loading,
     login,
     logout,
     isAuthenticated: !!user,
-    isAdmin: user?.role === 'Admin'
+    isAdmin,
+    can: checkPermission
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

@@ -7,6 +7,7 @@ import TeamList from './pages/TeamList';
 import ProjectList from './pages/ProjectList';
 import ProjectDashboard from './pages/ProjectDashboard';
 import Messages from './pages/Messages';
+import Roles from './pages/Roles';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
               <Route path="/projects" element={<ProjectList />} />
               <Route path="/projects/:id" element={<ProjectDashboard />} />
               <Route path="/team" element={<TeamList />} />
+              <Route path="/roles" element={<Roles />} />
               <Route path="/messages" element={<Messages />} />
               <Route path="/" element={<Navigate to="/projects" replace />} />
             </Route>

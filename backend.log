@@ -1,0 +1,24 @@
+
+> server@1.0.0 start
+> node src/index.js
+
+No MONGO_URI found, starting in-memory MongoDB...
+Server running on port 5000
+MongoDB Connected: 127.0.0.1
+Role 'Admin' created.
+Role 'PM' created.
+Role 'Developer' created.
+Role 'Client' created.
+Roles seeded successfully.
+Creating Admin with Role ID: new ObjectId('697600253d54dda59adfe632')
+Admin user created successfully: {
+  name: 'Admin User',
+  email: 'admin@projector.com',
+  password: '$2b$10$GzJ5fi43TGN1FrBeLNg5lO1m7ssmpDd64nnkaAncy5dhRF9Se5jqu',
+  role: new ObjectId('697600253d54dda59adfe632'),
+  skills: 'Management, Architecture',
+  availability: 'Full-time',
+  _id: new ObjectId('697600253d54dda59adfe642'),
+  createdAt: 2026-01-25T11:36:05.445Z,
+  __v: 0
+}

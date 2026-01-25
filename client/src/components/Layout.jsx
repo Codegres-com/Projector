@@ -32,7 +32,7 @@ const Layout = () => {
         <div className="p-6 border-t mt-auto absolute bottom-0 w-64">
            <div className="mb-4">
              <p className="font-semibold text-gray-800">{user?.name}</p>
-             <p className="text-sm text-gray-500 capitalize">{user?.role}</p>
+             <p className="text-sm text-gray-500 capitalize">{user?.role?.name}</p>
            </div>
            <button onClick={handleLogout} className="text-red-500 text-sm hover:underline">
              Sign Out
