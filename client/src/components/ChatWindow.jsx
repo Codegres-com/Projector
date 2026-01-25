@@ -113,12 +113,12 @@ const ChatWindow = ({ projectId, recipientId, title }) => {
           <div className="text-center text-gray-500 mt-10">No messages yet. Start the conversation!</div>
         ) : (
           messages.map((msg) => {
-            const isMe = msg.sender._id === user?._id;
+            const isMe = msg.sender?._id === user?._id;
             return (
               <div key={msg._id} className={`flex ${isMe ? 'justify-end' : 'justify-start'}`}>
                 <div className={`max-w-[70%] ${isMe ? 'items-end' : 'items-start'} flex flex-col`}>
                   <div className="flex items-center gap-2 mb-1">
-                    {!isMe && <span className="text-xs font-bold text-gray-600">{msg.sender.name}</span>}
+                    {!isMe && <span className="text-xs font-bold text-gray-600">{msg.sender?.name || 'Unknown User'}</span>}
                     <span className="text-xs text-gray-400">{formatTime(msg.createdAt)}</span>
                   </div>
 
