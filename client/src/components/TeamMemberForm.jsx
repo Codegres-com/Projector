@@ -1,14 +1,33 @@
 import { useState, useEffect } from 'react';
+import api from '../api';
 
 const TeamMemberForm = ({ user, onSave, onCancel }) => {
+  const [roles, setRoles] = useState([]);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     password: '',
-    role: 'Developer',
+    role: '',
     skills: '',
     availability: ''
   });
+
+  useEffect(() => {
+    const fetchRoles = async () => {
+      try {
+        const res = await api.get('/roles');
+        setRoles(res.data);
+        if (!user && res.data.length > 0) {
+            // Default to Developer if exists, or first role
+            const devRole = res.data.find(r => r.name === 'Developer');
+            setFormData(prev => ({ ...prev, role: devRole ? devRole._id : res.data[0]._id }));
+        }
+      } catch (err) {
+        console.error("Failed to fetch roles");
+      }
+    };
+    fetchRoles();
+  }, []);
 
   useEffect(() => {
     if (user) {
@@ -16,7 +35,7 @@ const TeamMemberForm = ({ user, onSave, onCancel }) => {
         name: user.name,
         email: user.email,
         password: '', // Don't populate password
-        role: user.role,
+        role: user.role?._id || user.role, // Handle populated object or ID
         skills: user.skills || '',
         availability: user.availability || ''
       });
@@ -61,10 +80,9 @@ const TeamMemberForm = ({ user, onSave, onCancel }) => {
           <div>
             <label className="block text-gray-700 text-sm font-bold mb-1">Role</label>
             <select name="role" value={formData.role} onChange={handleChange} className="w-full border p-2 rounded">
-              <option value="Admin">Admin</option>
-              <option value="PM">PM</option>
-              <option value="Developer">Developer</option>
-              <option value="Client">Client</option>
+              {roles.map(role => (
+                <option key={role._id} value={role._id}>{role.name}</option>
+              ))}
             </select>
           </div>
           <div>
