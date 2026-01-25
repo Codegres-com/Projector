@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 const dotenv = require('dotenv');
 const cors = require('cors');
 const passport = require('passport');
@@ -30,6 +31,15 @@ app.use('/api/projects', require('./routes/projects'));
 
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', message: 'Server is running', timestamp: new Date() });
+});
+
+// Serve static assets
+const clientDistPath = path.join(__dirname, '../../client/dist');
+app.use(express.static(clientDistPath));
+
+// Catch-all route to serve index.html for non-API routes
+app.get('*', (req, res) => {
+  res.sendFile(path.join(clientDistPath, 'index.html'));
 });
 
 // Start Server
