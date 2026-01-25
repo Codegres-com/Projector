@@ -2,6 +2,9 @@ import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import api from '../api';
 import ProjectForm from '../components/ProjectForm';
+import KanbanBoard from '../components/KanbanBoard';
+import BugTracker from '../components/BugTracker';
+import DocumentManager from '../components/DocumentManager';
 
 const ProjectDashboard = () => {
   const { id } = useParams();
@@ -10,19 +13,38 @@ const ProjectDashboard = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [activeTab, setActiveTab] = useState('Overview');
 
-  const fetchProject = async () => {
-    try {
-      const res = await api.get(`/projects/${id}`);
-      setProject(res.data);
-      setLoading(false);
-    } catch (err) {
-      setError('Failed to fetch project details');
-      setLoading(false);
-    }
-  };
+  // Stats for Overview
+  const [stats, setStats] = useState({
+      tasks: 0,
+      openBugs: 0,
+      docs: 0
+  });
 
   useEffect(() => {
+    const fetchProject = async () => {
+      try {
+        const res = await api.get(`/projects/${id}`);
+        setProject(res.data);
+        setLoading(false);
+
+        // Fetch stats
+        const tasksRes = await api.get(`/tasks?projectId=${id}`);
+        const bugsRes = await api.get(`/bugs?projectId=${id}`);
+        const docsRes = await api.get(`/documents?projectId=${id}`);
+
+        setStats({
+            tasks: tasksRes.data.length,
+            openBugs: bugsRes.data.filter(b => b.status === 'Open').length,
+            docs: docsRes.data.length
+        });
+
+      } catch (err) { // eslint-disable-line no-unused-vars
+        setError('Failed to fetch project details');
+        setLoading(false);
+      }
+    };
     fetchProject();
   }, [id]);
 
@@ -31,7 +53,7 @@ const ProjectDashboard = () => {
       const res = await api.put(`/projects/${id}`, formData);
       setProject(res.data);
       setIsEditModalOpen(false);
-    } catch (err) {
+    } catch (err) { // eslint-disable-line no-unused-vars
       alert('Failed to update project');
     }
   };
@@ -41,7 +63,7 @@ const ProjectDashboard = () => {
       try {
         await api.delete(`/projects/${id}`);
         navigate('/projects');
-      } catch (err) {
+      } catch (err) { // eslint-disable-line no-unused-vars
         alert('Failed to delete project');
       }
     }
@@ -50,6 +72,38 @@ const ProjectDashboard = () => {
   if (loading) return <div className="p-6">Loading...</div>;
   if (error) return <div className="p-6 text-red-500">{error}</div>;
   if (!project) return <div className="p-6">Project not found</div>;
+
+  const renderTabContent = () => {
+      switch(activeTab) {
+          case 'Kanban':
+              return <KanbanBoard projectId={id} />;
+          case 'Bugs':
+              return <BugTracker projectId={id} />;
+          case 'Documents':
+              return <DocumentManager projectId={id} />;
+          case 'Overview':
+          default:
+              return (
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div onClick={() => setActiveTab('Kanban')} className="bg-blue-50 p-6 rounded-lg border border-blue-100 cursor-pointer hover:bg-blue-100 transition">
+                        <h3 className="text-lg font-bold text-blue-900">Tasks</h3>
+                        <p className="text-3xl font-bold text-blue-600 my-2">{stats.tasks}</p>
+                        <p className="text-sm text-blue-800">Total Tasks</p>
+                    </div>
+                    <div onClick={() => setActiveTab('Bugs')} className="bg-red-50 p-6 rounded-lg border border-red-100 cursor-pointer hover:bg-red-100 transition">
+                        <h3 className="text-lg font-bold text-red-900">Bugs</h3>
+                        <p className="text-3xl font-bold text-red-600 my-2">{stats.openBugs}</p>
+                        <p className="text-sm text-red-800">Open Bugs</p>
+                    </div>
+                    <div onClick={() => setActiveTab('Documents')} className="bg-gray-50 p-6 rounded-lg border border-gray-100 cursor-pointer hover:bg-gray-100 transition">
+                        <h3 className="text-lg font-bold text-gray-900">Documents</h3>
+                        <p className="text-3xl font-bold text-gray-600 my-2">{stats.docs}</p>
+                        <p className="text-sm text-gray-800">Files Uploaded</p>
+                    </div>
+                </div>
+              );
+      }
+  };
 
   return (
     <div>
@@ -117,24 +171,29 @@ const ProjectDashboard = () => {
         </div>
       </div>
 
-      {/* Modules Placeholders */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <div className="bg-gray-50 p-6 rounded-lg border border-dashed border-gray-300 flex flex-col items-center justify-center h-48">
-            <h3 className="text-lg font-medium text-gray-400">Kanban Board</h3>
-            <p className="text-sm text-gray-400">Coming Soon</p>
-        </div>
-        <div className="bg-gray-50 p-6 rounded-lg border border-dashed border-gray-300 flex flex-col items-center justify-center h-48">
-            <h3 className="text-lg font-medium text-gray-400">Documents</h3>
-            <p className="text-sm text-gray-400">Coming Soon</p>
-        </div>
-        <div className="bg-gray-50 p-6 rounded-lg border border-dashed border-gray-300 flex flex-col items-center justify-center h-48">
-            <h3 className="text-lg font-medium text-gray-400">Requirements</h3>
-            <p className="text-sm text-gray-400">Coming Soon</p>
-        </div>
-        <div className="bg-gray-50 p-6 rounded-lg border border-dashed border-gray-300 flex flex-col items-center justify-center h-48">
-            <h3 className="text-lg font-medium text-gray-400">Bug Tracker</h3>
-            <p className="text-sm text-gray-400">Coming Soon</p>
-        </div>
+      {/* Tabs Navigation */}
+      <div className="border-b border-gray-200 mb-6">
+          <nav className="-mb-px flex space-x-8">
+              {['Overview', 'Kanban', 'Documents', 'Bugs'].map((tab) => (
+                  <button
+                      key={tab}
+                      onClick={() => setActiveTab(tab)}
+                      className={`
+                          whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm
+                          ${activeTab === tab
+                              ? 'border-blue-500 text-blue-600'
+                              : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'}
+                      `}
+                  >
+                      {tab}
+                  </button>
+              ))}
+          </nav>
+      </div>
+
+      {/* Tab Content */}
+      <div className="min-h-[400px]">
+          {renderTabContent()}
       </div>
 
        {isEditModalOpen && (
