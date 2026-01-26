@@ -35,6 +35,10 @@ app.use('/api/credentials', require('./routes/credentials'));
 app.use('/api/decision-logs', require('./routes/decisionLogs'));
 app.use('/api/messages', require('./routes/messages'));
 app.use('/api/roles', require('./routes/roles'));
+app.use('/api/clients', require('./routes/clients'));
+app.use('/api/requirements', require('./routes/requirements'));
+app.use('/api/estimations', require('./routes/estimations'));
+app.use('/api/quotations', require('./routes/quotations'));
 
 // Serve Uploads
 app.use('/uploads', express.static(path.join(__dirname, '../uploads')));

@@ -20,7 +20,11 @@ const DEFAULT_ROLES = [
       decisionLogs: allTrue,
       chat: allTrue,
       team: allTrue,
-      roles: allTrue
+      roles: allTrue,
+      clients: allTrue,
+      requirements: allTrue,
+      estimations: allTrue,
+      quotations: allTrue
     }
   },
   {
@@ -36,7 +40,11 @@ const DEFAULT_ROLES = [
       decisionLogs: allTrue,
       chat: allTrue,
       team: { create: true, read: true, update: true, delete: false },
-      roles: { create: false, read: true, update: false, delete: false }
+      roles: { create: false, read: true, update: false, delete: false },
+      clients: allTrue,
+      requirements: allTrue,
+      estimations: allTrue,
+      quotations: allTrue
     }
   },
   {
@@ -52,7 +60,11 @@ const DEFAULT_ROLES = [
       decisionLogs: { create: true, read: true, update: false, delete: false },
       chat: { create: true, read: true, update: false, delete: false },
       team: readOnly,
-      roles: noAccess
+      roles: noAccess,
+      clients: readOnly,
+      requirements: readOnly,
+      estimations: readOnly,
+      quotations: readOnly
     }
   },
   {
@@ -68,7 +80,11 @@ const DEFAULT_ROLES = [
       decisionLogs: readOnly,
       chat: { create: true, read: true, update: false, delete: false },
       team: noAccess,
-      roles: noAccess
+      roles: noAccess,
+      clients: noAccess,
+      requirements: { create: true, read: true, update: true, delete: false },
+      estimations: { create: false, read: true, update: false, delete: false },
+      quotations: { create: false, read: true, update: false, delete: false }
     }
   }
 ];

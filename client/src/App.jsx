@@ -8,6 +8,10 @@ import ProjectList from './pages/ProjectList';
 import ProjectDashboard from './pages/ProjectDashboard';
 import Messages from './pages/Messages';
 import Roles from './pages/Roles';
+import ClientList from './pages/ClientList';
+import RequirementList from './pages/RequirementList';
+import EstimationList from './pages/EstimationList';
+import QuotationList from './pages/QuotationList';
 
 function App() {
   return (
@@ -22,6 +26,10 @@ function App() {
               <Route path="/team" element={<TeamList />} />
               <Route path="/roles" element={<Roles />} />
               <Route path="/messages" element={<Messages />} />
+              <Route path="/clients" element={<ClientList />} />
+              <Route path="/requirements" element={<RequirementList />} />
+              <Route path="/estimations" element={<EstimationList />} />
+              <Route path="/quotations" element={<QuotationList />} />
               <Route path="/" element={<Navigate to="/projects" replace />} />
             </Route>
           </Route>

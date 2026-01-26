@@ -1,0 +1,227 @@
+
+> app@1.0.0 dev
+> concurrently "npm run server" "npm run client"
+
+[1]
+[1] > app@1.0.0 client
+[1] > npm run dev --prefix client
+[1]
+[0]
+[0] > app@1.0.0 server
+[0] > npm run dev --prefix server
+[0]
+[1]
+[1] > client@0.0.0 dev
+[1] > vite
+[1]
+[0]
+[0] > server@1.0.0 dev
+[0] > nodemon src/index.js
+[0]
+[0] [33m[nodemon] 3.1.11[39m
+[0] [33m[nodemon] to restart at any time, enter `rs`[39m
+[0] [33m[nodemon] watching path(s): *.*[39m
+[0] [33m[nodemon] watching extensions: js,mjs,cjs,json[39m
+[0] [32m[nodemon] starting `node src/index.js`[39m
+[1]
+[1]   VITE v7.3.1  ready in 701 ms
+[1]
+[1]   ➜  Local:   http://localhost:5173/
+[1]   ➜  Network: use --host to expose
+[0] No MONGO_URI found, starting in-memory MongoDB...
+[0] node:internal/modules/cjs/loader:1386
+[0]   throw err;
+[0]   ^
+[0]
+[0] Error: Cannot find module '../middleware/checkPermission'
+[0] Require stack:
+[0] - /app/server/src/routes/clients.js
+[0] - /app/server/src/index.js
+[0]     at Function._resolveFilename (node:internal/modules/cjs/loader:1383:15)
+[0]     at defaultResolveImpl (node:internal/modules/cjs/loader:1025:19)
+[0]     at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1030:22)
+[0]     at Function._load (node:internal/modules/cjs/loader:1192:37)
+[0]     at TracingChannel.traceSync (node:diagnostics_channel:328:14)
+[0]     at wrapModuleLoad (node:internal/modules/cjs/loader:237:24)
+[0]     at Module.require (node:internal/modules/cjs/loader:1463:12)
+[0]     at require (node:internal/modules/helpers:147:16)
+[0]     at Object.<anonymous> (/app/server/src/routes/clients.js:4:25)
+[0]     at Module._compile (node:internal/modules/cjs/loader:1706:14) {
+[0]   code: 'MODULE_NOT_FOUND',
+[0]   requireStack: [ '/app/server/src/routes/clients.js', '/app/server/src/index.js' ]
+[0] }
+[0]
+[0] Node.js v22.22.0
+[0] [31m[nodemon] app crashed - waiting for file changes before starting...[39m
+[0] [32m[nodemon] restarting due to changes...[39m
+[0] [32m[nodemon] starting `node src/index.js`[39m
+[0] No MONGO_URI found, starting in-memory MongoDB...
+[0] /app/server/node_modules/express/lib/router/route.js:216
+[0]         throw new Error(msg);
+[0]         ^
+[0]
+[0] Error: Route.get() requires a callback function but got a [object Object]
+[0]     at Route.<computed> [as get] (/app/server/node_modules/express/lib/router/route.js:216:15)
+[0]     at proto.<computed> [as get] (/app/server/node_modules/express/lib/router/index.js:521:19)
+[0]     at Object.<anonymous> (/app/server/src/routes/clients.js:13:8)
+[0]     at Module._compile (node:internal/modules/cjs/loader:1706:14)
+[0]     at Object..js (node:internal/modules/cjs/loader:1839:10)
+[0]     at Module.load (node:internal/modules/cjs/loader:1441:32)
+[0]     at Function._load (node:internal/modules/cjs/loader:1263:12)
+[0]     at TracingChannel.traceSync (node:diagnostics_channel:328:14)
+[0]     at wrapModuleLoad (node:internal/modules/cjs/loader:237:24)
+[0]     at Module.require (node:internal/modules/cjs/loader:1463:12)
+[0]
+[0] Node.js v22.22.0
+[0] [31m[nodemon] app crashed - waiting for file changes before starting...[39m
+[0] [32m[nodemon] restarting due to changes...[39m
+[0] [32m[nodemon] starting `node src/index.js`[39m
+[0] No MONGO_URI found, starting in-memory MongoDB...
+[0] /app/server/node_modules/express/lib/router/route.js:216
+[0]         throw new Error(msg);
+[0]         ^
+[0]
+[0] Error: Route.get() requires a callback function but got a [object Object]
+[0]     at Route.<computed> [as get] (/app/server/node_modules/express/lib/router/route.js:216:15)
+[0]     at proto.<computed> [as get] (/app/server/node_modules/express/lib/router/index.js:521:19)
+[0]     at Object.<anonymous> (/app/server/src/routes/clients.js:13:8)
+[0]     at Module._compile (node:internal/modules/cjs/loader:1706:14)
+[0]     at Object..js (node:internal/modules/cjs/loader:1839:10)
+[0]     at Module.load (node:internal/modules/cjs/loader:1441:32)
+[0]     at Function._load (node:internal/modules/cjs/loader:1263:12)
+[0]     at TracingChannel.traceSync (node:diagnostics_channel:328:14)
+[0]     at wrapModuleLoad (node:internal/modules/cjs/loader:237:24)
+[0]     at Module.require (node:internal/modules/cjs/loader:1463:12)
+[0]
+[0] Node.js v22.22.0
+[0] [31m[nodemon] app crashed - waiting for file changes before starting...[39m
+[0] [32m[nodemon] restarting due to changes...[39m
+[0] [32m[nodemon] starting `node src/index.js`[39m
+[0] No MONGO_URI found, starting in-memory MongoDB...
+[0] /app/server/node_modules/express/lib/router/route.js:216
+[0]         throw new Error(msg);
+[0]         ^
+[0]
+[0] Error: Route.get() requires a callback function but got a [object Object]
+[0]     at Route.<computed> [as get] (/app/server/node_modules/express/lib/router/route.js:216:15)
+[0]     at proto.<computed> [as get] (/app/server/node_modules/express/lib/router/index.js:521:19)
+[0]     at Object.<anonymous> (/app/server/src/routes/clients.js:13:8)
+[0]     at Module._compile (node:internal/modules/cjs/loader:1706:14)
+[0]     at Object..js (node:internal/modules/cjs/loader:1839:10)
+[0]     at Module.load (node:internal/modules/cjs/loader:1441:32)
+[0]     at Function._load (node:internal/modules/cjs/loader:1263:12)
+[0]     at TracingChannel.traceSync (node:diagnostics_channel:328:14)
+[0]     at wrapModuleLoad (node:internal/modules/cjs/loader:237:24)
+[0]     at Module.require (node:internal/modules/cjs/loader:1463:12)
+[0]
+[0] Node.js v22.22.0
+[0] [31m[nodemon] app crashed - waiting for file changes before starting...[39m
+[0] [32m[nodemon] restarting due to changes...[39m
+[0] [32m[nodemon] starting `node src/index.js`[39m
+[0] No MONGO_URI found, starting in-memory MongoDB...
+[0] /app/server/node_modules/express/lib/router/route.js:216
+[0]         throw new Error(msg);
+[0]         ^
+[0]
+[0] Error: Route.get() requires a callback function but got a [object Object]
+[0]     at Route.<computed> [as get] (/app/server/node_modules/express/lib/router/route.js:216:15)
+[0]     at proto.<computed> [as get] (/app/server/node_modules/express/lib/router/index.js:521:19)
+[0]     at Object.<anonymous> (/app/server/src/routes/clients.js:13:8)
+[0]     at Module._compile (node:internal/modules/cjs/loader:1706:14)
+[0]     at Object..js (node:internal/modules/cjs/loader:1839:10)
+[0]     at Module.load (node:internal/modules/cjs/loader:1441:32)
+[0]     at Function._load (node:internal/modules/cjs/loader:1263:12)
+[0]     at TracingChannel.traceSync (node:diagnostics_channel:328:14)
+[0]     at wrapModuleLoad (node:internal/modules/cjs/loader:237:24)
+[0]     at Module.require (node:internal/modules/cjs/loader:1463:12)
+[0]
+[0] Node.js v22.22.0
+[0] [31m[nodemon] app crashed - waiting for file changes before starting...[39m
+[0] [32m[nodemon] restarting due to changes...[39m
+[0] [32m[nodemon] starting `node src/index.js`[39m
+[0] No MONGO_URI found, starting in-memory MongoDB...
+[0] /app/server/node_modules/express/lib/router/route.js:216
+[0]         throw new Error(msg);
+[0]         ^
+[0]
+[0] Error: Route.get() requires a callback function but got a [object Object]
+[0]     at Route.<computed> [as get] (/app/server/node_modules/express/lib/router/route.js:216:15)
+[0]     at proto.<computed> [as get] (/app/server/node_modules/express/lib/router/index.js:521:19)
+[0]     at Object.<anonymous> (/app/server/src/routes/requirements.js:13:8)
+[0]     at Module._compile (node:internal/modules/cjs/loader:1706:14)
+[0]     at Object..js (node:internal/modules/cjs/loader:1839:10)
+[0]     at Module.load (node:internal/modules/cjs/loader:1441:32)
+[0]     at Function._load (node:internal/modules/cjs/loader:1263:12)
+[0]     at TracingChannel.traceSync (node:diagnostics_channel:328:14)
+[0]     at wrapModuleLoad (node:internal/modules/cjs/loader:237:24)
+[0]     at Module.require (node:internal/modules/cjs/loader:1463:12)
+[0]
+[0] Node.js v22.22.0
+[0] [31m[nodemon] app crashed - waiting for file changes before starting...[39m
+[0] [32m[nodemon] restarting due to changes...[39m
+[0] [32m[nodemon] starting `node src/index.js`[39m
+[0] No MONGO_URI found, starting in-memory MongoDB...
+[0] /app/server/node_modules/express/lib/router/route.js:216
+[0]         throw new Error(msg);
+[0]         ^
+[0]
+[0] Error: Route.get() requires a callback function but got a [object Object]
+[0]     at Route.<computed> [as get] (/app/server/node_modules/express/lib/router/route.js:216:15)
+[0]     at proto.<computed> [as get] (/app/server/node_modules/express/lib/router/index.js:521:19)
+[0]     at Object.<anonymous> (/app/server/src/routes/estimations.js:14:8)
+[0]     at Module._compile (node:internal/modules/cjs/loader:1706:14)
+[0]     at Object..js (node:internal/modules/cjs/loader:1839:10)
+[0]     at Module.load (node:internal/modules/cjs/loader:1441:32)
+[0]     at Function._load (node:internal/modules/cjs/loader:1263:12)
+[0]     at TracingChannel.traceSync (node:diagnostics_channel:328:14)
+[0]     at wrapModuleLoad (node:internal/modules/cjs/loader:237:24)
+[0]     at Module.require (node:internal/modules/cjs/loader:1463:12)
+[0]
+[0] Node.js v22.22.0
+[0] [31m[nodemon] app crashed - waiting for file changes before starting...[39m
+[0] [32m[nodemon] restarting due to changes...[39m
+[0] [32m[nodemon] starting `node src/index.js`[39m
+[0] No MONGO_URI found, starting in-memory MongoDB...
+[0] /app/server/node_modules/express/lib/router/route.js:216
+[0]         throw new Error(msg);
+[0]         ^
+[0]
+[0] Error: Route.get() requires a callback function but got a [object Object]
+[0]     at Route.<computed> [as get] (/app/server/node_modules/express/lib/router/route.js:216:15)
+[0]     at proto.<computed> [as get] (/app/server/node_modules/express/lib/router/index.js:521:19)
+[0]     at Object.<anonymous> (/app/server/src/routes/quotations.js:13:8)
+[0]     at Module._compile (node:internal/modules/cjs/loader:1706:14)
+[0]     at Object..js (node:internal/modules/cjs/loader:1839:10)
+[0]     at Module.load (node:internal/modules/cjs/loader:1441:32)
+[0]     at Function._load (node:internal/modules/cjs/loader:1263:12)
+[0]     at TracingChannel.traceSync (node:diagnostics_channel:328:14)
+[0]     at wrapModuleLoad (node:internal/modules/cjs/loader:237:24)
+[0]     at Module.require (node:internal/modules/cjs/loader:1463:12)
+[0]
+[0] Node.js v22.22.0
+[0] [31m[nodemon] app crashed - waiting for file changes before starting...[39m
+[0] [32m[nodemon] restarting due to changes...[39m
+[0] [32m[nodemon] starting `node src/index.js`[39m
+[0] No MONGO_URI found, starting in-memory MongoDB...
+[0] Server running on port 5000
+[0] Downloading MongoDB "8.2.1": 0% (0mb / 122mb)
+[0] Downloading MongoDB "8.2.1": 100% (122mb / 122mb)
+[0] Downloading MongoDB "8.2.1": 100% (0mb / 0mb)
+[0] MongoDB Connected: 127.0.0.1
+[0] Role 'Admin' created.
+[0] Role 'PM' created.
+[0] Role 'Developer' created.
+[0] Role 'Client' created.
+[0] Roles seeded successfully.
+[0] Creating Admin with Role ID: new ObjectId('69761b3628494c9232171614')
+[0] Admin user created successfully: {
+[0]   name: 'Admin User',
+[0]   email: 'admin@projector.com',
+[0]   password: '$2b$10$kiI6YNKCDyNcUPPuZW78h.az2lYGtj34QdIQIBSSL1jvJTh7w3g8W',
+[0]   role: new ObjectId('69761b3628494c9232171614'),
+[0]   skills: 'Management, Architecture',
+[0]   availability: 'Full-time',
+[0]   _id: new ObjectId('69761b3628494c9232171623'),
+[0]   createdAt: 2026-01-25T13:31:34.725Z,
+[0]   __v: 0
+[0] }
